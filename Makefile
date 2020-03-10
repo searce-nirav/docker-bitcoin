@@ -5,8 +5,14 @@ IMAGE_TAG := "bitcoin-core-gui"
 
 build: ## build the image
 	docker build . \
-		-t "${IMAGE_TAG}" \
-		--build-arg DOWNLOAD_URL="${DOWNLOAD_URL}"
+		-t ${IMAGE_TAG} \
+		--build-arg DOWNLOAD_URL=${DOWNLOAD_URL}
+
+run: ## run the image (requires it to be built on this host). Is recommended to customize the command to your needs
+	docker run \
+		--name ${IMAGE_TAG} \
+		-p 5800:5800 -p 5900:5900 \
+		${IMAGE_TAG}
 
 help: ## show this help.
 	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
