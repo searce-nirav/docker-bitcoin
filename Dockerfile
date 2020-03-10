@@ -13,9 +13,11 @@ RUN tar -xzf "bitcoin-core.tar.gz"
 # Setup the final image
 
 FROM jlesage/baseimage-gui:debian-9
+ARG APP_ICON="https://bitcoin.org/img/icons/opengraph.png"
 ENV APP_NAME="BitcoinCoreGUI"
 
 COPY --from=download /bitcoin-*/bin /bitcoin-core
 COPY startapp.sh /startapp.sh
 
+RUN install_app_icon.sh "${APP_ICON}"
 RUN chmod +x /bitcoin-core/*

@@ -30,6 +30,7 @@ VNC/webui related settings, such as securing the connection and so on.
 
 ## Changelog
 
+- 0.1.1 - Add Bitcoin logo as container favicon
 - 0.0.1 - Initial release
 
 ## TODO
