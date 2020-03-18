@@ -1,3 +1,7 @@
 *.md
 Makefile
 .git*
+*.odg*
+*.svg
+*.png
+build*/
