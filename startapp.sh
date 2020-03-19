@@ -1,3 +1,7 @@
 #!/bin/sh
 
-exec /bitcoin-core/bitcoin-qt -choosedatadir /config/bitcoin
+set -ex
+
+export HOME=/config
+
+exec bitcoin-qt

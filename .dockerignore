@@ -1,3 +1,5 @@
-*.md
-Makefile
-.git*
+# Ignore all
+**
+
+# Whitelist
+!startapp.sh
