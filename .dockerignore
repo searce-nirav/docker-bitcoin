@@ -1,7 +1,5 @@
-*.md
-Makefile
-.git*
-*.odg*
-*.svg
-*.png
-build*/
+# Ignore all
+**
+
+# Whitelist
+!startapp.sh
