@@ -17,8 +17,8 @@ steps:
     - 'us-central1-docker.pkg.dev/eighth-vehicle-375706/dockerbitcoin/bitcoin:$COMMIT_SHA'
     - '-t'
     - 'us-central1-docker.pkg.dev/eighth-vehicle-375706/dockerbitcoin/bitcoin:latest'
-    #- '--cache-from'
-    #- 'us-central1-docker.pkg.dev/eighth-vehicle-375706/sample-api-nodejs/sample-api-nodejs'
+    - '--cache-from'
+    - 'us-central1-docker.pkg.dev/eighth-vehicle-375706/dockerbitcoin/bitcoin'
     - '.'
   #id: Build
 
