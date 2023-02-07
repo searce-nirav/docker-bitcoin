@@ -18,8 +18,8 @@ steps:
   #id: Build
 
 # push the container image to Container Registry
-- name: 'gcr.io/kaniko-project/executor:latest'
-  args: ['push', 'us-central1-docker.pkg.dev/eighth-vehicle-375706/dockerbitcoin/bitcoin:$COMMIT_SHA']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'us-central1-docker.pkg.dev/eighth-vehicle-375706/dockerbitcoin/bitcoin:latest']
 
   # Deploy container image to Cloud Run
 - name: 'gcr.io/cloud-builders/gcloud'
