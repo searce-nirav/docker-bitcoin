@@ -1,7 +1,7 @@
 steps:
 
 # pull the image
-- name: gcr.io/cloud-builders/docker
+- name: 'gcr.io/kaniko-project/executor:latest'
   entrypoint: bash
   args:
     - '-c'
@@ -10,24 +10,19 @@ steps:
       || exit 0
 
 # build the container image
-- name: 'gcr.io/cloud-builders/docker'
+- name: 'gcr.io/kaniko-project/executor:latest'
   args:
-    - build
-    - '-t'
-    - 'us-central1-docker.pkg.dev/eighth-vehicle-375706/dockerbitcoin/bitcoin:$COMMIT_SHA'
-    - '-t'
-    - 'us-central1-docker.pkg.dev/eighth-vehicle-375706/dockerbitcoin/bitcoin:latest'
-    - '--cache-from'
-    - 'us-central1-docker.pkg.dev/eighth-vehicle-375706/dockerbitcoin/bitcoin'
-    - '.'
+  - --destination=us-central1-docker.pkg.dev/eighth-vehicle-375706/dockerbitcoin/bitcoin:latest
+  - --cache=true
+  - --cache-ttl=6h
   #id: Build
 
 # push the container image to Container Registry
-- name: 'gcr.io/cloud-builders/docker'
+- name: 'gcr.io/kaniko-project/executor:latest'
   args: ['push', 'us-central1-docker.pkg.dev/eighth-vehicle-375706/dockerbitcoin/bitcoin:$COMMIT_SHA']
 
   # Deploy container image to Cloud Run
-- name: 'gcr.io/cloud-builders/gcloud'
+- name: 'gcr.io/kaniko-project/executor:latest'
   args: ['run', 'deploy', 'dockerbitcoin', '--image', 'us-central1-docker.pkg.dev/eighth-vehicle-375706/dockerbitcoin/bitcoin', '--region', 'us-central1', '--platform', 'managed', '--allow-unauthenticated']
 
 options:
